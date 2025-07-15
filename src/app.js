@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 
 
+aap.use("/user",)
+
 // // app.use("/user",(req,res)=>{
 // //     res.send("HAHAHAHAHA");
 // // })
