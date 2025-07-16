@@ -3,31 +3,23 @@ const {adminauth} = require('./middleware/auth');
 
 const app = express();
 
-// app.use("/admin",(req,res,next)=>{
-//     const token = "xyz23";
-//     const isAdmin = token === "xyz";
-//     if(!isAdmin){
-//         res.status(401).send("Unauthorized user");
-//     }
-//     next();
-// })
-//app.use("/admin",adminauth);
+app.use("/getuser",(err,req,res,next)=>{
+    try{
 
-app.get("/admin/getdata",adminauth,(req,res)=>{
-    res.send("Get all the data");
-});
+        // write the logic for fetching the data from DB and show on it;
+        throw new Error("dewjd");
+        res.send("get user data");
+    }
+    catch(err){
+        res.status(500).send("Some error contact support team");
+    }
+})
 
-app.delete("/admin/deleteuser",(req,res)=>{
-    res.send("delete the user");
-});
-
-// Advanced Routes 
-app.get("/abc",(req,res)=>{
-    res.send({
-        firstName:"Akshay",
-        lastName:"Saini"
-    });
-});
+app.use("/",(err,req,res,next)=>{
+    if(err){
+        console.log("Some error is comming or not");
+    }
+})
 
 app.listen(3000,()=>{
     console.log("Server is running on the port number 3000...");
