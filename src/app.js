@@ -3,7 +3,23 @@ const express = require('express');
 const app = express();
 
 
-aap.use("/user",)
+//app.use("/route",[rh1,rh2,rh3],rh4);  -- all working fine arr cannot make any change
+aap.use("/user",(req,res,next)=>{
+    console.log("Handling the routes user 1!!");
+    next();
+},
+(req,res,next)=>{
+    console.log("Handling the routes user 2!!");
+    next();
+},
+(req,res,next)=>{
+    console.log("Handling the routes user 3 !!");
+    next();
+},
+(req,res,next)=>{
+    console.log("Handling the routes user 4 !!");
+    res.send("user routes is working fine");
+},)
 
 // // app.use("/user",(req,res)=>{
 // //     res.send("HAHAHAHAHA");
