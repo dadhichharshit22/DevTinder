@@ -1,63 +1,25 @@
 const express = require('express');
+const {adminauth} = require('./middleware/auth');
 
 const app = express();
 
-// GET /users => It checks all the app.xxx("matching routes") functions
-// GET /users => middleware chains => request handlet
-//app.use("/route",[rh1,rh2,rh3],rh4);  -- all working fine arr cannot make any change
-// aap.use("/user",(req,res,next)=>{
-//     console.log("Handling the routes user 1!!");
+// app.use("/admin",(req,res,next)=>{
+//     const token = "xyz23";
+//     const isAdmin = token === "xyz";
+//     if(!isAdmin){
+//         res.status(401).send("Unauthorized user");
+//     }
 //     next();
-// },
-// (req,res,next)=>{
-//     console.log("Handling the routes user 2!!");
-//     next();
-// },
-// (req,res,next)=>{
-//     console.log("Handling the routes user 3 !!");
-//     next();
-// },
-// (req,res,next)=>{
-//     console.log("Handling the routes user 4 !!");
-//     res.send("user routes is working fine");
-// },)
-
-// // app.use("/user",(req,res)=>{
-// //     res.send("HAHAHAHAHA");
-// // })
-
-// //This will only handle GET Call to /user
-// app.get("/user",(req,res)=>{
-//     res.send({
-//         firstName:"Akshay",
-//         lastName:"Saini"
-//     });
-// });
-
-
-// app.post("/user",(req,res)=>{
-//     // this controller or route handler
-//     // saving the data DB
-//     res.send("Data Successfully saved to the Database");
 // })
+//app.use("/admin",adminauth);
 
-// app.delete("/user",(req,res)=>{
-//     res.send("Delete Successfully");
-// })
+app.get("/admin/getdata",adminauth,(req,res)=>{
+    res.send("Get all the data");
+});
 
-// // this will match all the http method api calls to /test
-// app.use("/test",(req,res)=>{
-//     res.send("hello hello hello hello ");
-// })
-
-// RequestHandler
-// app.use("/hello",function(req,res){
-//     res.send("Hello from the server");
-// })
-// app.use("/",(req,res)=>{
-//     res.send("Namaste akshay bhaiya");
-// })
-
+app.delete("/admin/deleteuser",(req,res)=>{
+    res.send("delete the user");
+});
 
 // Advanced Routes 
 app.get("/abc",(req,res)=>{
