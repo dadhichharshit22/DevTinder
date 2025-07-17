@@ -5,14 +5,21 @@ const User = require("./models/user.js");
 
 const app = express();
 
+// Middleware ->convert Json data into js Object
+app.use(express.json());
+
 app.post("/signup",async(req,res)=>{
 
-    const user = new User({
-        firstName:"Vanshaj",
-        lastName:"Dadhich",
-        emailId:"dadhich.harshit222002@gmail.com",
-        password:"dadhich@1233"
-    })
+    // // Create a new instance of the User Model
+    // const user = new User({
+    //     firstName:"Vanshaj",
+    //     lastName:"Dadhich",
+    //     emailId:"dadhich.harshit222002@gmail.com",
+    //     password:"dadhich@1233"
+    // })
+    const user = new User(
+        req.body);
+        
      try{
     await user.save();
     res.send("User Successfully added");
