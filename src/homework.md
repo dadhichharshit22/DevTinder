@@ -44,3 +44,6 @@
 - Connect your application to the database "Connection-url"/devTinder
 - Call the mongodb function and connect to database before starting application on 3000
 - create a user schema and user model
+- create POST/signup API to add data to database
+- Push some documents using API Calls from postman
+- Error Handling using try,catch
