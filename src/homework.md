@@ -36,3 +36,11 @@
 - write a dummy auth middleware for admin
 - write a dummy auth middleware for all user routes,except /user/login
 - Error handling using app.use("/",(err,req,res,next)={});
+
+
+- Day 4 HomeWork
+- Create a free cluster on MongoDB offical website(Mongo Atlas)
+- Install mongoose Library
+- Connect your application to the database "Connection-url"/devTinder
+- Call the mongodb function and connect to database before starting application on 3000
+- create a user schema and user model
