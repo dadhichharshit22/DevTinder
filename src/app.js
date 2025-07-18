@@ -25,21 +25,21 @@ app.patch("/user",async(req,res)=>{
 
 });
 // find the user from the database
-app.get("/user",async (req,res)=>{
-   // console.log(req.body);
-    const userEmail = req.body.emailId;
-   // console.log(userEmail);
-    try{
-    const user = await User.find();
-   // console.log(user);
-   if(user.length===0){
-    res.status(404).send("User not found");
-   }
-    res.send(user);
-    }catch(err){
-        res.status(400).send("Something Went Wrong");
-    }
-})
+// app.get("/user",async (req,res)=>{
+//    // console.log(req.body);
+//     const userEmail = req.body.emailId;
+//    // console.log(userEmail);
+//     try{
+//     const user = await User.find();
+//    // console.log(user);
+//    if(user.length===0){
+//     res.status(404).send("User not found");
+//    }
+//     res.send(user);
+//     }catch(err){
+//         res.status(400).send("Something Went Wrong");
+//     }
+// })
 
 // get a the all user data from the database
 app.get("/feed",async (req,res) =>{
@@ -109,19 +109,19 @@ app.post("/signup",async(req,res)=>{
 });
 
 // Update the user data from the database
-app.patch("/user",async (req,res)=>{
-    const userId = req.body.userId;
-    console.log(userId);
-    const data = req.body;
-    console.log(data);
-    try{
+// app.patch("/user",async (req,res)=>{
+//     const userId = req.body.userId;
+//     console.log(userId);
+//     const data = req.body;
+//     console.log(data);
+//     try{
 
-        await User.findByIdAndUpdate({_id:userId},data,{ReturnDocument:"Before"});
-        res.send("User Successfully Update");
-    }catch(err){
-        res.status(404).send("Something went Wrong");
-    }
-})
+//         await User.findByIdAndUpdate({_id:userId},data,{ReturnDocument:"Before"});
+//         res.send("User Successfully Update");
+//     }catch(err){
+//         res.status(404).send("Something went Wrong");
+//     }
+// })
 
 
 connectDB()
