@@ -9,6 +9,21 @@ const app = express();
 // Middleware ->convert Json data into js Object
 app.use(express.json());
 
+
+// find the user by emailID and update it
+app.patch("/user",async(req,res)=>{
+  const emailId = req.body.emailId;
+  console.log(emailId)
+  const data = req.body;
+  console.log(data);
+  try{
+     await User.findOneAndUpdate({email:emailId},data);
+     res.send("User Successfully Updated using emailID");
+  } catch(err){
+    res.send("Something went wrong");
+  }
+
+});
 // find the user from the database
 app.get("/user",async (req,res)=>{
    // console.log(req.body);
