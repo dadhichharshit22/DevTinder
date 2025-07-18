@@ -8,6 +8,69 @@ const app = express();
 // Middleware ->convert Json data into js Object
 app.use(express.json());
 
+// find the user from the database
+app.get("/user",async (req,res)=>{
+   // console.log(req.body);
+    const userEmail = req.body.emailId;
+   // console.log(userEmail);
+    try{
+    const user = await User.find();
+   // console.log(user);
+   if(user.length===0){
+    res.status(404).send("User not found");
+   }
+    res.send(user);
+    }catch(err){
+        res.status(400).send("Something Went Wrong");
+    }
+})
+
+// get a the all user data from the database
+app.get("/feed",async (req,res) =>{
+    try{
+       const users = await User.find({});
+       res.send(users);
+    }catch(err){
+        console.log("Something went wrong");
+        res.status(400).send("No user Found");
+    }
+   
+
+})
+
+app.get("/user",async (req,res)=>{
+   // console.log(req.body);
+    const userEmail = req.body.emailId;
+   // console.log(userEmail);
+    try{
+    const user = await User.find({emailId:userEmail});
+   // console.log(user);
+   if(user.length===0){
+    res.status(404).send("User not found");
+   }
+    res.send(user);
+    }catch(err){
+        res.status(400).send("Something Went Wrong");
+    }
+})
+
+
+// delete  a user from the database
+app.delete("/user",async (req,res)=>{
+    const userId = req.body.userId;
+    console.log(userId);
+    try{
+      
+     // const user = User.findByIdAndDelete({_id:userId});
+      const user = await User.findByIdAndDelete(userId);
+      console.log(user);
+      res.send("User Successfully Deleted");
+    }catch(err){
+        res.send("Something went Wrong");
+    }
+})
+
+// send a data of user to database
 app.post("/signup",async(req,res)=>{
 
     // // Create a new instance of the User Model
@@ -19,7 +82,7 @@ app.post("/signup",async(req,res)=>{
     // })
     const user = new User(
         req.body);
-        
+
      try{
     await user.save();
     res.send("User Successfully added");
@@ -28,6 +91,8 @@ app.post("/signup",async(req,res)=>{
      }
    
 });
+
+
 connectDB()
 .then(()=>{
     console.log("Database connection established....");
