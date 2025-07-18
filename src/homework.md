@@ -58,4 +58,8 @@
 - API - GET user by ID
 - Create Delete User API
 - Difference Between Patch vs PUT
+- API - Create USER API
+- Read the mongoose Documents for MODEL
+- What are the options in Model.findOneandUpdate method,explore more about it.
+- API - Update the User with email ID
 

@@ -2,6 +2,7 @@ const express = require('express');
 //const {adminauth} = require('./middleware/auth');
 const connectDB = require('./config/database.js');
 const User = require("./models/user.js");
+const { ReturnDocument } = require('mongodb');
 
 const app = express();
 
@@ -91,6 +92,21 @@ app.post("/signup",async(req,res)=>{
      }
    
 });
+
+// Update the user data from the database
+app.patch("/user",async (req,res)=>{
+    const userId = req.body.userId;
+    console.log(userId);
+    const data = req.body;
+    console.log(data);
+    try{
+
+        await User.findByIdAndUpdate({_id:userId},data,{ReturnDocument:"Before"});
+        res.send("User Successfully Update");
+    }catch(err){
+        res.status(404).send("Something went Wrong");
+    }
+})
 
 
 connectDB()
