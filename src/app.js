@@ -17,10 +17,13 @@ app.patch("/user",async(req,res)=>{
   const data = req.body;
   console.log(data);
   try{
-     await User.findOneAndUpdate({email:emailId},data);
+     await User.findOneAndUpdate({email:emailId},data,{
+        returnDocument:"After",
+        runValidators:true,
+     });
      res.send("User Successfully Updated using emailID");
   } catch(err){
-    res.send("Something went wrong");
+    res.send("Update are having issue:"+ err.message);
   }
 
 });
